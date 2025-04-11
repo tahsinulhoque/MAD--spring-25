@@ -1,0 +1,197 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => AboutPage(),
+        '/diu': (context) => DiuPage(),
+        '/iccha': (context) => IcchaPage(),
+      },
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: AppDrawer(),
+      appBar: AppBar(title: Text('About')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.account_circle, size: 40),
+                SizedBox(width: 10),
+                Text(
+                  'Md. Tahsinul Hoque Siddiki',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.greenAccent),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.network('https://cdn3d.iconscout.com/3d/premium/thumb/coding-5025384-4197846.png', height: 100),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('App Name : Assignment'),
+                        Text('App Author : Tahsinul Hoque Siddiki'),
+                        Text('University : Daffodil International University'),
+                        Text('Date: 10/03/2025'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Github'),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DiuPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: AppDrawer(),
+      appBar: AppBar(title: Text('Diu')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                'https://images.shiksha.com/mediadata/images/1511255680php9rE9Cc.jpeg',
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 20),
+            ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('Faculty'),
+              subtitle: Text("Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."),
+            ),
+            ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('Students'),
+              subtitle: Text("Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class IcchaPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: AppDrawer(),
+      appBar: AppBar(title: Text('Iccha')),
+      backgroundColor: Colors.tealAccent.shade700,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.info, color: Colors.black87),
+                title: Text('Tour'),
+                subtitle: Text("Body text for whatever you'd like to say."),
+                trailing: ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ),
+            ),
+            SizedBox(height: 20),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.info, color: Colors.black87),
+                title: Text('Development'),
+                subtitle: Text("Body text for whatever you'd like to say. ."),
+                trailing: ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AppDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Navigation',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.info),
+            title: Text('About'),
+            onTap: () => Navigator.pushNamed(context, '/'),
+          ),
+          ListTile(
+            leading: Icon(Icons.school),
+            title: Text('Diu'),
+            onTap: () => Navigator.pushNamed(context, '/diu'),
+          ),
+          ListTile(
+            leading: Icon(Icons.explore),
+            title: Text('Iccha'),
+            onTap: () => Navigator.pushNamed(context, '/iccha'),
+          ),
+        ],
+      ),
+    );
+  }
+}
